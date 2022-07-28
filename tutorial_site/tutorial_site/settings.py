@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS: list[str] = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
