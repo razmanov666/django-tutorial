@@ -25,12 +25,12 @@
           {% endif %}
           <div class="media-body">
             <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-text">{{ item.content }}</p>
-            <a href="#" class="btn btn-primary">Read more</a>
+            <p class="card-text">{{ item.content|safe|linebreaks }}</p>
+            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more</a>
           </div>
         </div>
-        <div class="card-footer text-muted">{{ item.created_at|date:"Y-m-d H:i:s" }}</div>
       </div>
-    {% endfor %}
-  </div>
+      <div class="card-footer text-muted">{{ item.created_at|date:"Y-m-d H:i:s" }}</div>
+    </div>
+  {% endfor %}
 {% endblock content %}
