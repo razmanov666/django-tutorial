@@ -7,9 +7,44 @@
 {% endblock sidebar %}
 {% block content %}
     <h1>Добавление новости</h1>
-    <form action="{% url 'add_news' %}">
+    <form action="{% url 'add_news' %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
-    </form>
+        {{ form.as_p }}  {# The first method: fully auto, not agile #}
+        {% comment %}
+        {{ form.none_field.errors }} {# The second method: fully manually, very agile #}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}" class="form-label">Заголовок</label>
+            {{ form.title }}
+            <div class="invalid-feedback">{{ form.title.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}" class="form-label">Содержимое</label>
+            {{ form.content }}
+            <div class="invalid-feedback">{{ form.content.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.category.id_for_label }}" class="form-label">Категория</label>
+            {{ form.category }}
+            <div class="invalid-feedback">{{ form.category.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.is_published.id_for_label }}" class="form-label">Опубликовать?</label>
+            {{ form.is_published }}
+            <div class="invalid-feedback">{{ form.is_published.errors }}</div>
+        </div> {% endcomment %}
+
+        {% comment %} {% for field in form %} {# The third method: semi-auto, not agile #}
+            <div class="form-group mb-3 mt-3 ">
+                {{ field.label_tag }}
+                {{ field }}
+                <div class="invalid-feedback">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %} {% endcomment %}
+    <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
+</form>
 {% endblock content %}
