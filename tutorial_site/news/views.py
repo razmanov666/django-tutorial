@@ -1,12 +1,15 @@
 # from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.views.generic import DetailView
 from django.views.generic import ListView
 
 from .forms import NewsForm
 from .models import Category
 from .models import News
+
+# from django.views.generic import CreateView
 
 
 class HomeNews(ListView):
@@ -60,9 +63,16 @@ class NewsByCategory(ListView):
 #     )
 
 
-def view_news(request, news_id):
-    news_item = get_object_or_404(News, pk=news_id)
-    return render(request, "news/view_news.html", {"news_item": news_item})
+class ViewNews(DetailView):
+    model = News
+    context_object_name = "news_item"
+    # template_name: str = 'news/news_detail.html'
+    # pk_url_kwarg: str = 'news_id'
+
+
+# def view_news(request, news_id):
+#     news_item = get_object_or_404(News, pk=news_id)
+#     return render(request, "news/view_news.html", {"news_item": news_item})
 
 
 def add_news(request):
