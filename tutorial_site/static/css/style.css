@@ -1,7 +1,14 @@
-body {
-    background-color: rgba(111, 255, 253, 0.398);
-}
+/* body {
+    background-color: rgba(0, 253, 249, 0.398);
+} */
 
 .navbar-brand {
     margin-left: 1rem;
+}
+
+body {
+    background: url("../images/d9ok9q7-3ef80b37-d000-4a01-8ef6-7a15aa352441.png") center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+
 }

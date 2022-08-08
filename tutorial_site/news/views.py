@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -5,17 +6,20 @@ from django.views.generic import ListView
 from .forms import NewsForm
 from .models import Category
 from .models import News
+from .utils import MyMixin
 
 
-class HomeNews(ListView):
+class HomeNews(MyMixin, ListView):
     model = News
     template_name: str = "news/home_news_list.html"
     context_object_name: str = "news"
     # extra_context = {'title': 'Главная'}
+    mixin_prop = "hello world"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Главная"
+        context["title"] = self.get_upper("Главная страница")
+        context["mixin_prop"] = self.get_prop()
         return context
 
     def get_queryset(self):
@@ -24,7 +28,7 @@ class HomeNews(ListView):
         )
 
 
-class NewsByCategory(ListView):
+class NewsByCategory(MyMixin, ListView):
     model = News
     template_name: str = "news/home_news_list.html"
     context_object_name = "news"
@@ -37,7 +41,9 @@ class NewsByCategory(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = Category.objects.get(pk=self.kwargs["category_id"])
+        context["title"] = self.get_upper(
+            Category.objects.get(pk=self.kwargs["category_id"])
+        )
         return context
 
 
@@ -48,7 +54,8 @@ class ViewNews(DetailView):
     # pk_url_kwarg: str = 'news_id'
 
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name: str = "news/add_news.html"
+    login_url = "/admin/"
     # success_url = reverse_lazy('home')
