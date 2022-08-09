@@ -14,11 +14,14 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home' %}">Главная</a>
       </li>
-      {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
-        </li>
-      {% comment %} {% endif %} {% endcomment %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
+      </li>
     </ul>
+
   </div>
+  <span class="navbar-text">
+    <a href="{% url 'register' %}">Register</a> |
+    <a href="{% url 'login' %}">Login</a>
+  </span>
 </nav>

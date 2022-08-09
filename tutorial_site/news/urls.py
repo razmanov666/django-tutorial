@@ -1,9 +1,10 @@
 from django.urls import path
+from views import login
+from views import register
 
 from .views import CreateNews
 from .views import HomeNews
 from .views import NewsByCategory
-from .views import test
 from .views import ViewNews
 
 # from .views import view_news
@@ -13,7 +14,8 @@ from .views import ViewNews
 # from .views import index
 
 urlpatterns = [
-    path("test/", test, name="test"),
+    path("login/", login, name="login"),
+    path("register/", register, name="register"),
     # path("", index, name="home"),
     path("", HomeNews.as_view(), name="home"),
     # path("category/<int:category_id>/", get_category, name="category"),
