@@ -28,16 +28,16 @@ def test(request):
     paginator = Paginator(objects, 2)
     page_num = request.GET.get("page", 1)
     page_objects = paginator.get_page(page_num)
+    # print(dir(page_objects))
     return render(request, "news/test.html", {"page_obj": page_objects})
 
 
 class HomeNews(MyMixin, ListView):
     model = News
-    paginate_by: int = 3
     template_name: str = "news/home_news_list.html"
     context_object_name: str = "news"
     # extra_context = {'title': 'Главная'}
-    mixin_prop = "hello world"
+    paginate_by: int = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,6 +56,7 @@ class NewsByCategory(MyMixin, ListView):
     template_name: str = "news/home_news_list.html"
     context_object_name = "news"
     allow_empty: bool = False
+    paginate_by: int = 2
 
     def get_queryset(self):
         return News.objects.filter(
