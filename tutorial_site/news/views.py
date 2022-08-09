@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+from django.shortcuts import render
 from django.views.generic import CreateView
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -9,8 +11,29 @@ from .models import News
 from .utils import MyMixin
 
 
+def test(request):
+    objects = [
+        "jonh1",
+        "jonh2",
+        "jonh3",
+        "jonh4",
+        "jonh5",
+        "jonh6",
+        "jonh7",
+        "jonh8",
+        "jonh9",
+        "jonh10",
+        "jonh11",
+    ]
+    paginator = Paginator(objects, 2)
+    page_num = request.GET.get("page", 1)
+    page_objects = paginator.get_page(page_num)
+    return render(request, "news/test.html", {"page_obj": page_objects})
+
+
 class HomeNews(MyMixin, ListView):
     model = News
+    paginate_by: int = 3
     template_name: str = "news/home_news_list.html"
     context_object_name: str = "news"
     # extra_context = {'title': 'Главная'}

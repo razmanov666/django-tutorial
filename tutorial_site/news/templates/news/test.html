@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    Тестовая страница :: {{ block.super }}
+{% endblock title %}
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock sidebar %}
+{% block content %}
+    {% comment %} <h1>Тестовая страница</h1> {% endcomment %}
+    {% for name in page_obj.object_list %}
+        <p>{{ name }}</p>
+    {% endfor %}
+{% endblock content %}
