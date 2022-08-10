@@ -1,10 +1,10 @@
 from django.urls import path
-from views import login
-from views import register
 
 from .views import CreateNews
 from .views import HomeNews
+from .views import login
 from .views import NewsByCategory
+from .views import register
 from .views import ViewNews
 
 # from .views import view_news
