@@ -6,6 +6,10 @@
     margin-left: 1rem;
 }
 
+.navbar-text{
+    margin-right: 1rem;
+}
+
 body {
     background: url("../images/d9ok9q7-3ef80b37-d000-4a01-8ef6-7a15aa352441.png") center fixed;
     -webkit-background-size: cover;
