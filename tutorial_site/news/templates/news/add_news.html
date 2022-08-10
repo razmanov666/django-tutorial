@@ -10,10 +10,7 @@
     <form action="{% url 'add_news' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}  {# The first method: fully auto, not agile #}
-
-
         {# The second method: fully manually, very agile #}
-
         {% comment %}
         {{ form.none_field.errors }}
         <div class="form-group">
@@ -39,21 +36,14 @@
             {{ form.is_published }}
             <div class="invalid-feedback">{{ form.is_published.errors }}</div>
         </div> {% endcomment %}
-
-
         {# The third method: semi-auto, not agile #}
-
         {% comment %} {% for field in form %}
             <div class="form-group mb-3 mt-3 ">
                 {{ field.label_tag }}
                 {{ field }}
-                <div class="invalid-feedback">
-                    {{ field.errors }}
-                </div>
+                <div class="invalid-feedback">{{ field.errors }}</div>
             </div>
         {% endfor %} {% endcomment %}
-
-
-    <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
-</form>
+        <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
+    </form>
 {% endblock content %}
