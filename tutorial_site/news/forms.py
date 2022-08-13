@@ -9,6 +9,21 @@ from django.core.exceptions import ValidationError
 from .models import News
 
 
+class ContactForm(forms.Form):
+    adress = subject = forms.EmailField(
+        label="Adress",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    subject = forms.CharField(
+        label="Subject",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    content = forms.CharField(
+        label="Text",
+        widget=forms.Textarea(attrs={"class": "form-control", "rows": 5}),
+    )
+
+
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
         label="Username",

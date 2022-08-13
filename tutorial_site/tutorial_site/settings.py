@@ -137,3 +137,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "spasti_ot_drakona@mail.ru"
+EMAIL_HOST_PASSWORD = "Vj3sNasntsGYrt4Utb7r"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True

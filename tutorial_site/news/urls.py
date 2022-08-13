@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import CreateNews
 from .views import HomeNews
+from .views import mail_test
 from .views import NewsByCategory
 from .views import register
 from .views import user_login
@@ -15,6 +16,7 @@ from .views import ViewNews
 # from .views import index
 
 urlpatterns = [
+    path("mail/", mail_test, name="mail"),
     path("login/", user_login, name="login"),
     path("logout/", user_logout, name="logout"),
     path("register/", register, name="register"),
