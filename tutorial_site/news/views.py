@@ -20,7 +20,7 @@ from .utils import MyMixin
 # from django.core.paginator import Paginator
 
 
-def mail_test(request):
+def mail(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         print()
@@ -41,7 +41,7 @@ def mail_test(request):
             messages.error(request, "Error")
     else:
         form = ContactForm()
-    return render(request, "news/test.html", {"form": form})
+    return render(request, "news/mail.html", {"form": form})
 
 
 def register(request):

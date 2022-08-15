@@ -3,6 +3,8 @@ from django.db.models import Count
 from django.db.models import F
 from news.models import Category
 
+# from django.core.cache import cache
+
 register = template.Library()
 
 
