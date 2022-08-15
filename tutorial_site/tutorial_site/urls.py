@@ -20,7 +20,11 @@ from django.urls import include
 from django.urls import path
 
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("news.urls"))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("news.urls")),
+    path("captcha/", include("captcha.urls")),
+]
 
 if settings.DEBUG:
     import debug_toolbar
